@@ -6,13 +6,9 @@
  * @LastEditTime: 2021-01-07 12:53:35
  * @FilePath: /idea/src/main/java/jdbc/JdbcControl.java
  */
-package jdbc;
+package utils.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 /**
@@ -51,6 +47,10 @@ public class JdbcControl {
         return null;
     }
 
+    /**
+     * 关闭结果集合。
+     * @param resultSet 结果集合。
+     */
     public static void closeResultSet(ResultSet resultSet) {
         if (resultSet != null) {
             try {
@@ -66,6 +66,16 @@ public class JdbcControl {
         if (statement != null) {
             try {
                 statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void closePreparedStatement(PreparedStatement preparedStatement) {
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
